@@ -3,10 +3,10 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Lancheira</title>
+    <title>Congela & Pronto - Lancheiras Saudáveis</title>
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-    <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@200;300;400;500;700&display=swap" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@200;300;400;500;600;700;800&display=swap" rel="stylesheet">
     <style>
         * {
             margin: 0;
@@ -14,49 +14,132 @@
             box-sizing: border-box;
         }
 
+        :root {
+            --primary-green: #0ba300;
+            --dark-green: #049521;
+            --light-green: #e8f5e9;
+            --accent-blue: #374bae;
+            --text-dark: #1a1a1a;
+            --text-light: #666;
+        }
+
         body {
             font-family: 'Poppins', sans-serif;
-            background-color: #ffffff;
-            color: #0a0a0a;
+            background: linear-gradient(135deg, #f8fffe 0%, #ffffff 100%);
+            color: var(--text-dark);
             line-height: 1.6;
             user-select: none;
             -webkit-user-select: none;
             -moz-user-select: none;
+            overflow-x: hidden;
         }
 
+        /* HEADER FIXO */
+        .header {
+            background: linear-gradient(135deg, var(--primary-green) 0%, var(--dark-green) 100%);
+            padding: 15px 0;
+            position: sticky;
+            top: 0;
+            z-index: 1000;
+            box-shadow: 0 4px 20px rgba(11, 163, 0, 0.3);
+        }
+
+        .header-content {
+            max-width: 512px;
+            margin: 0 auto;
+            text-align: center;
+            color: white;
+            font-weight: 700;
+            font-size: 16px;
+            padding: 0 20px;
+        }
+
+        .header-badge {
+            display: inline-block;
+            background: rgba(255, 255, 255, 0.2);
+            padding: 5px 15px;
+            border-radius: 20px;
+            margin-top: 5px;
+            font-size: 12px;
+        }
+
+        /* CONTAINER PRINCIPAL */
         .container {
             max-width: 512px;
             margin: 0 auto;
-            padding: 20px;
+            padding: 30px 20px;
             display: flex;
             flex-direction: column;
-            gap: 32px;
+            gap: 40px;
         }
 
+        /* HERO SECTION */
+        .hero-section {
+            background: linear-gradient(135deg, var(--light-green) 0%, #ffffff 100%);
+            border-radius: 20px;
+            padding: 30px;
+            box-shadow: 0 10px 40px rgba(0, 0, 0, 0.1);
+            margin-top: -20px;
+        }
+
+        .hero-title {
+            font-size: 32px;
+            font-weight: 800;
+            color: var(--dark-green);
+            text-align: center;
+            margin-bottom: 15px;
+            line-height: 1.2;
+            text-shadow: 2px 2px 4px rgba(0, 0, 0, 0.05);
+        }
+
+        .hero-subtitle {
+            font-size: 18px;
+            color: var(--text-light);
+            text-align: center;
+            margin-bottom: 20px;
+        }
+
+        /* IMAGENS */
         img {
             width: 100%;
             height: auto;
             display: block;
             pointer-events: none;
-            border-radius: 8px;
+            border-radius: 12px;
+            box-shadow: 0 8px 24px rgba(0, 0, 0, 0.1);
+            transition: transform 0.3s ease;
+        }
+
+        img:hover {
+            transform: scale(1.02);
         }
 
         .img-80 {
-            width: 80%;
+            width: 85%;
             margin: 0 auto;
         }
 
         .img-40 {
-            width: 40%;
+            width: 45%;
             margin: 0 auto;
         }
 
+        /* SEÇÃO COM BACKGROUND */
+        .section-highlight {
+            background: linear-gradient(135deg, #fff9e6 0%, #ffffff 100%);
+            border-left: 5px solid #ffc107;
+            padding: 25px;
+            border-radius: 12px;
+            box-shadow: 0 4px 15px rgba(255, 193, 7, 0.2);
+        }
+
+        /* BOTÕES PREMIUM */
         .btn {
-            padding: 18px 32px;
-            font-size: 18px;
+            padding: 20px 35px;
+            font-size: 19px;
             font-weight: 700;
             border: none;
-            border-radius: 12px;
+            border-radius: 50px;
             cursor: pointer;
             transition: all 0.3s ease;
             text-align: center;
@@ -64,163 +147,264 @@
             display: block;
             width: 100%;
             font-family: 'Poppins', sans-serif;
+            position: relative;
+            overflow: hidden;
+            box-shadow: 0 8px 25px rgba(0, 0, 0, 0.2);
+        }
+
+        .btn::before {
+            content: '';
+            position: absolute;
+            top: 50%;
+            left: 50%;
+            width: 0;
+            height: 0;
+            border-radius: 50%;
+            background: rgba(255, 255, 255, 0.3);
+            transform: translate(-50%, -50%);
+            transition: width 0.6s, height 0.6s;
+        }
+
+        .btn:hover::before {
+            width: 300px;
+            height: 300px;
         }
 
         .btn-primary {
             background: linear-gradient(135deg, #0ba300 0%, #049521 100%);
             color: white;
-            box-shadow: 0 4px 15px rgba(11, 163, 0, 0.4);
-            animation: pulse 2s infinite;
+            animation: pulse 2.5s infinite;
+            border: 3px solid #007a00;
         }
 
         .btn-secondary {
             background: linear-gradient(135deg, #374bae 0%, #2a2ea2 100%);
             color: white;
-            box-shadow: 0 4px 15px rgba(55, 75, 174, 0.4);
-            animation: pulse 2s infinite;
+            animation: pulse 2.5s infinite;
+            border: 3px solid #1e2a7a;
         }
 
-        .btn-reject {
-            background: #1f1e1e;
-            color: white;
-            border: 2px solid #474747;
+        .btn:active {
+            transform: scale(0.97);
         }
 
-        .btn:hover {
-            transform: translateY(-2px);
-            box-shadow: 0 6px 20px rgba(0, 0, 0, 0.3);
+        .btn-icon {
+            font-size: 24px;
+            margin-right: 8px;
+            vertical-align: middle;
         }
 
         @keyframes pulse {
             0%, 100% {
                 transform: scale(1);
+                box-shadow: 0 8px 25px rgba(0, 0, 0, 0.2);
             }
             50% {
-                transform: scale(1.02);
+                transform: scale(1.03);
+                box-shadow: 0 12px 35px rgba(11, 163, 0, 0.4);
             }
+        }
+
+        /* CARDS DE PREÇO MELHORADOS */
+        .pricing-section {
+            display: flex;
+            flex-direction: column;
+            gap: 20px;
         }
 
         .pricing-card {
-            background: linear-gradient(135deg, #e2f5e0 0%, #d4f1d0 100%);
-            border: 3px solid #2407b6;
-            border-radius: 16px;
-            padding: 24px;
+            background: linear-gradient(135deg, #ffffff 0%, #f8fffe 100%);
+            border: 3px solid var(--primary-green);
+            border-radius: 20px;
+            padding: 30px;
             text-align: center;
-            margin: 20px 0;
-            box-shadow: 0 8px 24px rgba(0, 0, 0, 0.1);
+            position: relative;
+            box-shadow: 0 10px 40px rgba(11, 163, 0, 0.15);
+            transition: transform 0.3s ease;
+        }
+
+        .pricing-card:hover {
+            transform: translateY(-5px);
+            box-shadow: 0 15px 50px rgba(11, 163, 0, 0.25);
+        }
+
+        .pricing-badge {
+            position: absolute;
+            top: -15px;
+            right: 20px;
+            background: linear-gradient(135deg, #ff6b35 0%, #ff4500 100%);
+            color: white;
+            padding: 8px 20px;
+            border-radius: 20px;
+            font-size: 14px;
+            font-weight: 700;
+            box-shadow: 0 4px 15px rgba(255, 69, 0, 0.4);
+        }
+
+        .pricing-card.featured {
+            border-color: #ffc107;
+            border-width: 4px;
+            background: linear-gradient(135deg, #fff9e6 0%, #ffffff 100%);
+        }
+
+        .pricing-card.featured .pricing-badge {
+            background: linear-gradient(135deg, #ffc107 0%, #ff9800 100%);
         }
 
         .pricing-card h3 {
-            font-size: 24px;
-            font-weight: 700;
-            margin-bottom: 8px;
-            color: #000;
+            font-size: 26px;
+            font-weight: 800;
+            margin-bottom: 10px;
+            color: var(--dark-green);
         }
 
         .pricing-card .subtitle {
-            color: #555;
-            font-size: 14px;
-            margin-bottom: 16px;
+            color: var(--text-light);
+            font-size: 15px;
+            margin-bottom: 20px;
         }
 
         .pricing-card .label {
             font-size: 16px;
-            color: #333;
-            margin-bottom: 8px;
+            color: #666;
+            margin-bottom: 10px;
         }
 
         .pricing-card .price {
-            font-size: 48px;
-            font-weight: 700;
-            color: #049521;
-            margin: 16px 0;
-        }
-
-        .highlight-text {
-            background-color: #03ad00;
-            color: white;
-            padding: 16px;
-            border-radius: 8px;
-            text-align: center;
-            font-size: 20px;
-            font-weight: 700;
+            font-size: 56px;
+            font-weight: 800;
+            color: var(--primary-green);
             margin: 20px 0;
+            text-shadow: 2px 2px 4px rgba(0, 0, 0, 0.1);
         }
 
+        .pricing-features {
+            text-align: left;
+            margin: 20px 0;
+            padding: 20px;
+            background: rgba(11, 163, 0, 0.05);
+            border-radius: 12px;
+        }
+
+        .pricing-features li {
+            list-style: none;
+            padding: 8px 0;
+            font-size: 15px;
+            color: var(--text-dark);
+        }
+
+        .pricing-features li::before {
+            content: '✓';
+            color: var(--primary-green);
+            font-weight: 700;
+            margin-right: 10px;
+            font-size: 18px;
+        }
+
+        /* HIGHLIGHT TEXT MELHORADO */
+        .highlight-text {
+            background: linear-gradient(135deg, var(--primary-green) 0%, var(--dark-green) 100%);
+            color: white;
+            padding: 20px 25px;
+            border-radius: 15px;
+            text-align: center;
+            font-size: 22px;
+            font-weight: 700;
+            margin: 30px 0;
+            box-shadow: 0 8px 25px rgba(11, 163, 0, 0.3);
+            position: relative;
+        }
+
+        .highlight-text::before {
+            content: '🌟';
+            font-size: 30px;
+            display: block;
+            margin-bottom: 10px;
+        }
+
+        /* VÍDEO CONTAINER */
         .video-container {
             width: 100%;
-            max-width: 400px;
-            margin: 20px auto;
-            border-radius: 12px;
+            max-width: 450px;
+            margin: 30px auto;
+            border-radius: 20px;
             overflow: hidden;
-            box-shadow: 0 4px 20px rgba(0, 0, 0, 0.15);
+            box-shadow: 0 15px 50px rgba(0, 0, 0, 0.2);
+            border: 4px solid var(--primary-green);
         }
 
+        /* AVISO PROMO MELHORADO */
         .aviso-promo {
-            background-color: red;
+            background: linear-gradient(135deg, #ff1744 0%, #d50000 100%);
             color: white;
-            font-size: 20px;
-            font-weight: bold;
-            padding: 15px 30px;
+            font-size: 22px;
+            font-weight: 800;
+            padding: 18px 35px;
             text-align: center;
-            border-radius: 8px;
-            animation: promoAnimation 1.2s infinite;
+            border-radius: 50px;
+            animation: promoAnimation 1.5s infinite;
             width: fit-content;
-            margin: 20px auto;
-            box-shadow: 0 0 10px rgba(255, 0, 0, 0.5);
+            margin: 30px auto;
+            box-shadow: 0 8px 30px rgba(255, 23, 68, 0.5);
+            border: 3px solid #ffffff;
         }
 
         @keyframes promoAnimation {
             0%, 100% {
                 transform: scale(1);
-                opacity: 1;
             }
             50% {
                 transform: scale(1.05);
-                opacity: 0.85;
             }
         }
 
+        /* POPUPS MELHORADOS */
         .popup {
             position: fixed;
             top: 20px;
             right: 20px;
-            background-color: #388e3c;
+            background: linear-gradient(135deg, #2e7d32 0%, #1b5e20 100%);
             color: #fff;
-            padding: 15px 20px;
-            border-radius: 8px;
-            font-size: 17px;
+            padding: 18px 25px;
+            border-radius: 15px;
+            font-size: 16px;
             font-family: 'Poppins', sans-serif;
-            font-weight: bold;
-            box-shadow: 0px 0px 10px rgba(0,0,0,0.2);
+            font-weight: 600;
+            box-shadow: 0 8px 30px rgba(0, 0, 0, 0.3);
             z-index: 9999;
             display: none;
-            animation: fadeInOut 5s ease-in-out;
+            animation: slideInRight 0.5s ease-out;
+            border: 2px solid rgba(255, 255, 255, 0.3);
+        }
+
+        @keyframes slideInRight {
+            from {
+                transform: translateX(400px);
+                opacity: 0;
+            }
+            to {
+                transform: translateX(0);
+                opacity: 1;
+            }
         }
 
         .popup::before {
-            content: '🛒 ';
-            font-size: 20px;
+            content: '🎉 ';
+            font-size: 22px;
         }
 
-        @keyframes fadeInOut {
-            0% { opacity: 0; transform: translateY(-10px); }
-            10% { opacity: 1; transform: translateY(0); }
-            90% { opacity: 1; }
-            100% { opacity: 0; transform: translateY(-10px); }
-        }
-
+        /* CARROSSEL MELHORADO */
         .carousel {
             display: flex;
-            gap: 16px;
+            gap: 20px;
             overflow-x: auto;
             scroll-snap-type: x mandatory;
-            padding: 16px 0;
+            padding: 20px 0;
             -webkit-overflow-scrolling: touch;
         }
 
         .carousel::-webkit-scrollbar {
-            height: 8px;
+            height: 10px;
         }
 
         .carousel::-webkit-scrollbar-track {
@@ -229,195 +413,375 @@
         }
 
         .carousel::-webkit-scrollbar-thumb {
-            background: #888;
+            background: linear-gradient(135deg, var(--primary-green) 0%, var(--dark-green) 100%);
             border-radius: 10px;
         }
 
         .carousel img {
-            min-width: 80%;
+            min-width: 85%;
             scroll-snap-align: center;
+            border: 3px solid var(--primary-green);
         }
 
-        @media (max-width: 768px) {
-            .container {
-                padding: 12px;
-                gap: 24px;
+        /* GARANTIA BADGE */
+        .guarantee-badge {
+            background: linear-gradient(135deg, #2196F3 0%, #1976D2 100%);
+            color: white;
+            padding: 20px;
+            border-radius: 15px;
+            text-align: center;
+            font-weight: 700;
+            margin: 30px 0;
+            box-shadow: 0 8px 25px rgba(33, 150, 243, 0.3);
+        }
+
+        .guarantee-badge::before {
+            content: '🛡️';
+            font-size: 40px;
+            display: block;
+            margin-bottom: 10px;
+        }
+
+        /* BOTÃO FLUTUANTE MELHORADO */
+        #sticky-btn {
+            display: none;
+            position: fixed;
+            bottom: 20px;
+            left: 15px;
+            right: 15px;
+            z-index: 10000;
+            padding: 18px 30px;
+            font-size: 17px;
+            font-weight: 800;
+            border: none;
+            border-radius: 50px;
+            cursor: pointer;
+            text-align: center;
+            font-family: 'Poppins', sans-serif;
+            background: linear-gradient(135deg, #0ba300 0%, #049521 100%);
+            color: white;
+            box-shadow: 0 10px 40px rgba(11, 163, 0, 0.6);
+            animation: float 3s ease-in-out infinite;
+            border: 3px solid #ffffff;
+        }
+
+        @keyframes float {
+            0%, 100% {
+                transform: translateY(0);
             }
-            
+            50% {
+                transform: translateY(-5px);
+            }
+        }
+
+        @media (min-width: 769px) {
+            #sticky-btn {
+                left: 50%;
+                right: auto;
+                transform: translateX(-50%);
+                max-width: 500px;
+                padding: 20px 40px;
+                font-size: 19px;
+            }
+        }
+
+        /* SEÇÃO DE DEPOIMENTOS */
+        .testimonials-section {
+            background: linear-gradient(135deg, #f8f9fa 0%, #ffffff 100%);
+            padding: 30px;
+            border-radius: 20px;
+            box-shadow: 0 10px 40px rgba(0, 0, 0, 0.08);
+        }
+
+        .testimonials-title {
+            text-align: center;
+            font-size: 26px;
+            font-weight: 800;
+            color: var(--dark-green);
+            margin-bottom: 30px;
+        }
+
+        /* ANIMAÇÕES */
+        .fade-in {
+            animation: fadeIn 1s ease-in;
+        }
+
+        @keyframes fadeIn {
+            from {
+                opacity: 0;
+                transform: translateY(20px);
+            }
+            to {
+                opacity: 1;
+                transform: translateY(0);
+            }
+        }
+
+        /* RESPONSIVO */
+        @media (max-width: 768px) {
+            .hero-title {
+                font-size: 26px;
+            }
+
+            .container {
+                padding: 20px 15px;
+                gap: 30px;
+            }
+
             .btn {
                 font-size: 16px;
-                padding: 14px 24px;
+                padding: 16px 28px;
             }
-            
+
             .pricing-card .price {
-                font-size: 36px;
+                font-size: 44px;
             }
-            
+
             .aviso-promo {
-                font-size: 16px;
-                padding: 12px 20px;
+                font-size: 18px;
+                padding: 15px 25px;
             }
 
             .popup {
                 font-size: 14px;
-                padding: 12px 16px;
+                padding: 14px 18px;
                 right: 10px;
                 left: 10px;
             }
-        }
 
-        .fade-in {
-            animation: fadeIn 0.8s ease-in;
-        }
-
-        @keyframes fadeIn {
-            from { opacity: 0; }
-            to { opacity: 1; }
+            .highlight-text {
+                font-size: 18px;
+                padding: 18px 20px;
+            }
         }
     </style>
 </head>
 <body>
-    <div id="popup1" class="popup">Amanda Souza acabou de adquirir um acesso!</div>
-    <div id="popup2" class="popup">Juliana Ferreira acabou de adquirir um acesso!</div>
-    <div id="popup3" class="popup">Camila Oliveira acabou de adquirir um acesso!</div>
-    <div id="popup4" class="popup">Renata Lima acabou de adquirir um acesso!</div>
-    <div id="popup5" class="popup">Tatiane Ramos acabou de adquirir um acesso!</div>
+    <!-- HEADER FIXO -->
+    <div class="header">
+        <div class="header-content">
+            ✨ OFERTA EXCLUSIVA PARA MÃES PREOCUPADAS ✨
+            <div class="header-badge">Garantia de 7 dias</div>
+        </div>
+    </div>
+
+    <!-- POPUPS -->
+    <div id="popup1" class="popup">Maria Silva garantiu seu acesso agora!</div>
+    <div id="popup2" class="popup">Ana Costa acabou de adquirir o plano!</div>
+    <div id="popup3" class="popup">Carla Mendes garantiu a transformação!</div>
+    <div id="popup4" class="popup">Paula Santos está economizando tempo!</div>
+    <div id="popup5" class="popup">Juliana Alves conquistou a praticidade!</div>
+
+    <!-- BOTÃO FLUTUANTE -->
+    <button id="sticky-btn" onclick="window.location.href='https://pay.lowify.com.br/checkout?product_id=VzwxEy'">
+        <span class="btn-icon">🚀</span> GARANTIR MINHA VAGA AGORA!
+    </button>
 
     <div class="container">
+        <!-- HERO SECTION -->
+        <div class="hero-section fade-in">
+            <h1 class="hero-title">🍎 Lancheiras Saudáveis em Minutos!</h1>
+            <p class="hero-subtitle">Descubra como preparar 30 dias de lancheiras nutritivas e congela-las para economizar tempo e dinheiro</p>
+        </div>
+
         <img src="https://cdn.xquiz.co/images/211bf9ca-94d5-4e40-9d7b-ee1f3f957785" alt="Banner Principal" class="fade-in">
 
-        <img src="https://cdn.xquiz.co/images/3beb7d4a-70a5-4ff9-a7df-24f771f9ca9c" alt="Informação 1" class="fade-in">
+        <div class="section-highlight fade-in">
+            <h2 style="font-size: 22px; font-weight: 700; color: #d84315; margin-bottom: 15px;">⚠️ Você está cansada de:</h2>
+            <ul style="list-style: none; padding: 0;">
+                <li style="padding: 8px 0; font-size: 16px;">❌ Gastar fortunas com lanchinhos industrializados</li>
+                <li style="padding: 8px 0; font-size: 16px;">❌ Ver seu filho comendo porcarias na escola</li>
+                <li style="padding: 8px 0; font-size: 16px;">❌ Passar horas na cozinha todos os dias</li>
+                <li style="padding: 8px 0; font-size: 16px;">❌ Não ter variedade nas lancheiras</li>
+            </ul>
+        </div>
+
+        <img src="https://cdn.xquiz.co/images/3beb7d4a-70a5-4ff9-a7df-24f771f9ca9c" alt="Solução" class="fade-in">
 
         <img src="https://cdn.xquiz.co/images/9496dbf2-abe9-4773-9002-2a7afdd48b4f" alt="Benefícios" class="fade-in">
 
-        <img src="https://cdn.xquiz.co/images/5bb690db-593d-4ee8-8408-30bd3a6147ea" alt="Detalhes" class="fade-in">
+        <img src="https://cdn.xquiz.co/images/5bb690db-593d-4ee8-8408-30bd3a6147ea" alt="Método" class="fade-in">
 
-        <button class="btn btn-primary" onclick="scrollToCheckout()">QUERO MEU FILHO SAUDÁVEL!</button>
+        <button class="btn btn-primary" onclick="scrollToCheckout()">
+            <span class="btn-icon">🎯</span> QUERO LANCHEIRAS SAUDÁVEIS!
+        </button>
 
-        <img src="https://cdn.xquiz.co/images/047ac581-40c3-48d7-a9c8-9e020db79c46" alt="Prova Social" class="fade-in">
+        <img src="https://cdn.xquiz.co/images/047ac581-40c3-48d7-a9c8-9e020db79c46" alt="Transformação" class="fade-in">
 
-        <img src="https://cdn.xquiz.co/images/28cd0f0d-c916-485a-87d8-85d1e048ee49" alt="Mais Informações" class="fade-in">
+        <img src="https://cdn.xquiz.co/images/28cd0f0d-c916-485a-87d8-85d1e048ee49" alt="Resultados" class="fade-in">
 
-        <button class="btn btn-primary" onclick="scrollToCheckout()">QUERO MEU FILHO SAUDÁVEL!</button>
-
-        <div class="img-80">
-            <img src="https://cdn.xquiz.co/images/5485272e-6296-4499-a746-0476aa48e4c3" alt="Depoimento 1" class="fade-in">
+        <div class="guarantee-badge fade-in">
+            GARANTIA TOTAL DE 7 DIAS<br>
+            <span style="font-size: 14px; font-weight: 400;">100% do seu dinheiro de volta se não gostar</span>
         </div>
 
-        <div class="img-80">
-            <img src="https://cdn.xquiz.co/images/68d5831d-9359-4bef-9507-499e19a52aea" alt="Depoimento 2" class="fade-in">
+        <!-- SEÇÃO DE DEPOIMENTOS -->
+        <div class="testimonials-section fade-in">
+            <h2 class="testimonials-title">💬 Veja o que as mães estão dizendo</h2>
+            
+            <div class="img-80">
+                <img src="https://cdn.xquiz.co/images/5485272e-6296-4499-a746-0476aa48e4c3" alt="Depoimento 1">
+            </div>
+
+            <div class="img-80">
+                <img src="https://cdn.xquiz.co/images/68d5831d-9359-4bef-9507-499e19a52aea" alt="Depoimento 2">
+            </div>
+
+            <div class="img-80">
+                <img src="https://cdn.xquiz.co/images/8de7c8d8-673f-4cbd-a36b-5971f97cdb44" alt="Depoimento 3">
+            </div>
+
+            <div class="img-80">
+                <img src="https://cdn.xquiz.co/images/fe3c9092-13e8-4852-acb1-562df8fd4974" alt="Depoimento 4">
+            </div>
+
+            <div class="img-80">
+                <img src="https://cdn.xquiz.co/images/0fd9807e-0775-407e-96c6-4f95c65a2ad5" alt="Depoimento 5">
+            </div>
+
+            <div class="img-80">
+                <img src="https://cdn.xquiz.co/images/ee0fadac-30bc-4c1c-b899-40fca48420b0" alt="Depoimento 6">
+            </div>
+
+            <div class="img-80">
+                <img src="https://cdn.xquiz.co/images/ec123f8c-5cbd-4087-899e-6f88aa4d1159" alt="Depoimento 7">
+            </div>
+
+            <div class="img-80">
+                <img src="https://cdn.xquiz.co/images/7a1f2e3f-0178-498b-914d-f19bdeeef778" alt="Depoimento 8">
+            </div>
+
+            <div class="img-80">
+                <img src="https://cdn.xquiz.co/images/626b50e9-4e04-4460-895b-117958f37b86" alt="Depoimento 9">
+            </div>
         </div>
 
-        <div class="img-80">
-            <img src="https://cdn.xquiz.co/images/8de7c8d8-673f-4cbd-a36b-5971f97cdb44" alt="Depoimento 3" class="fade-in">
-        </div>
+        <button class="btn btn-primary" onclick="scrollToCheckout()">
+            <span class="btn-icon">⭐</span> SIM! QUERO TRANSFORMAR AS LANCHEIRAS!
+        </button>
 
-        <div class="img-80">
-            <img src="https://cdn.xquiz.co/images/fe3c9092-13e8-4852-acb1-562df8fd4974" alt="Depoimento 4" class="fade-in">
-        </div>
-
-        <div class="img-80">
-            <img src="https://cdn.xquiz.co/images/0fd9807e-0775-407e-96c6-4f95c65a2ad5" alt="Depoimento 5" class="fade-in">
-        </div>
-
-        <div class="img-80">
-            <img src="https://cdn.xquiz.co/images/ee0fadac-30bc-4c1c-b899-40fca48420b0" alt="Depoimento 6" class="fade-in">
-        </div>
-
-        <div class="img-80">
-            <img src="https://cdn.xquiz.co/images/ec123f8c-5cbd-4087-899e-6f88aa4d1159" alt="Depoimento 7" class="fade-in">
-        </div>
-
-        <div class="img-80">
-            <img src="https://cdn.xquiz.co/images/7a1f2e3f-0178-498b-914d-f19bdeeef778" alt="Depoimento 8" class="fade-in">
-        </div>
-
-        <div class="img-80">
-            <img src="https://cdn.xquiz.co/images/626b50e9-4e04-4460-895b-117958f37b86" alt="Depoimento 9" class="fade-in">
-        </div>
-
-        <button class="btn btn-primary" onclick="scrollToCheckout()">QUERO MEU FILHO SAUDÁVEL!</button>
-
-        <img src="https://cdn.xquiz.co/images/64577d5c-a9bc-4413-a9d2-71d61bd21679" alt="Mais Benefícios" class="fade-in">
+        <img src="https://cdn.xquiz.co/images/64577d5c-a9bc-4413-a9d2-71d61bd21679" alt="Bônus Exclusivos" class="fade-in">
 
         <div class="highlight-text">
-            Veja um dos muitos depoimentos que recebo todos os dias...
+            Depoimento real de uma mãe que transformou a alimentação do filho
         </div>
 
         <div class="video-container">
-            <vturb-smartplayer id="vid-68a3cbc272c5fa25b46ddf82" style="display: block; margin: 0 auto; width: 100%; max-width: 400px;"></vturb-smartplayer>
+            <vturb-smartplayer id="vid-68a3cbc272c5fa25b46ddf82"></vturb-smartplayer>
         </div>
 
-        <img src="https://cdn.xquiz.co/images/de954c44-399a-43b7-96d8-18d27cf2a862" alt="Chamada para Ação" class="fade-in" id="checkout">
+        <img src="https://cdn.xquiz.co/images/de954c44-399a-43b7-96d8-18d27cf2a862" alt="Chamada Final" class="fade-in" id="checkout">
 
         <div class="img-80">
-            <img src="https://cdn.xquiz.co/images/e640f5e8-9b76-4a37-a12b-31603c16ec09" alt="Resultado 1" class="fade-in">
-        </div>
-
-        <div class="img-80">
-            <img src="https://cdn.xquiz.co/images/217b6753-d54e-46e4-a072-c863c8e9ea78" alt="Resultado 2" class="fade-in">
+            <img src="https://cdn.xquiz.co/images/e640f5e8-9b76-4a37-a12b-31603c16ec09" alt="Prova 1">
         </div>
 
         <div class="img-80">
-            <img src="https://cdn.xquiz.co/images/481506e3-0a79-40e4-9cd5-1bbbfee31ba9" alt="Resultado 3" class="fade-in">
+            <img src="https://cdn.xquiz.co/images/217b6753-d54e-46e4-a072-c863c8e9ea78" alt="Prova 2">
         </div>
 
         <div class="img-80">
-            <img src="https://cdn.xquiz.co/images/2a5833db-6b2d-459f-ba30-8bd9005121ac" alt="Resultado 4" class="fade-in">
+            <img src="https://cdn.xquiz.co/images/481506e3-0a79-40e4-9cd5-1bbbfee31ba9" alt="Prova 3">
         </div>
 
         <div class="img-80">
-            <img src="https://cdn.xquiz.co/images/367fedda-68b9-4623-aa53-2919d6834832" alt="Resultado 5" class="fade-in">
+            <img src="https://cdn.xquiz.co/images/2a5833db-6b2d-459f-ba30-8bd9005121ac" alt="Prova 4">
         </div>
 
-        <div class="aviso-promo">Últimas 15 vagas pelo preço promocional</div>
-
-        <img src="https://cdn.xquiz.co/images/4b30b458-d9b6-4869-b63f-1f24c6083c51" alt="Oferta" class="fade-in">
-
-        <div class="pricing-card">
-            <h3>TESTE POR 7 DIAS</h3>
-            <p class="subtitle">Sem compromisso</p>
-            <p class="label">Por apenas 3x de</p>
-            <p class="price">R$ 6,09</p>
+        <div class="img-80">
+            <img src="https://cdn.xquiz.co/images/367fedda-68b9-4623-aa53-2919d6834832" alt="Prova 5">
         </div>
 
-        <button class="btn btn-secondary" onclick="window.location.href='https://pay.lowify.com.br/checkout?product_id=o5kPaH'">👉 LEVAR PLANO BÁSICO</button>
+        <div class="aviso-promo">⚡ ÚLTIMAS 15 VAGAS COM DESCONTO ⚡</div>
+
+        <img src="https://cdn.xquiz.co/images/4b30b458-d9b6-4869-b63f-1f24c6083c51" alt="Oferta Especial" class="fade-in">
+
+        <!-- PLANOS -->
+        <div class="pricing-section">
+            <div class="pricing-card">
+                <div class="pricing-badge">BÁSICO</div>
+                <h3>TESTE POR 7 DIAS</h3>
+                <p class="subtitle">Sem compromisso - Cancele quando quiser</p>
+                <p class="label">Por apenas 3x de</p>
+                <p class="price">R$ 6,09</p>
+                <ul class="pricing-features">
+                    <li>Acesso ao app completo</li>
+                    <li>+ 100 receitas saudáveis</li>
+                    <li>Suporte via WhatsApp</li>
+                    <li>Garantia de 7 dias</li>
+                </ul>
+                <button class="btn btn-secondary" onclick="window.location.href='https://pay.lowify.com.br/checkout?product_id=o5kPaH'">
+                    <span class="btn-icon">👉</span> COMEÇAR AGORA
+                </button>
+            </div>
+
+            <div class="pricing-card featured">
+                <div class="pricing-badge">⭐ MAIS ESCOLHIDO</div>
+                <h3>TESTE POR 30 DIAS</h3>
+                <p class="subtitle">Sem compromisso - Melhor custo-benefício</p>
+                <p class="label">Por apenas 5x de</p>
+                <p class="price">R$ 5,99</p>
+                <ul class="pricing-features">
+                    <li>✨ Tudo do plano básico</li>
+                    <li>🎁 4 BÔNUS EXCLUSIVOS</li>
+                    <li>📱 Acesso vitalício ao app</li>
+                    <li>👨‍🍳 Receitas semanais novas</li>
+                    <li>🏆 Comunidade VIP no WhatsApp</li>
+                    <li>🎯 Planejamento personalizado</li>
+                </ul>
+                <button class="btn btn-primary" onclick="window.location.href='https://pay.lowify.com.br/checkout?product_id=VzwxEy'">
+                    <span class="btn-icon">🚀</span> QUERO O PREMIUM
+                </button>
+            </div>
+        </div>
 
         <img src="https://cdn.xquiz.co/images/e6e60530-1161-4198-b732-328c42c7503d" alt="Comparativo" class="fade-in">
-
-        <div class="pricing-card">
-            <h3>TESTE POR 30 DIAS</h3>
-            <p class="subtitle">Sem compromisso</p>
-            <p class="label">Por apenas 5x de</p>
-            <p class="price">R$ 5,99</p>
-        </div>
-
-        <button class="btn btn-primary" onclick="window.location.href='https://pay.lowify.com.br/checkout?product_id=VzwxEy'">👉 LEVAR PLANO PREMIUM<br>⭐⭐⭐⭐⭐</button>
 
         <img src="https://cdn.xquiz.co/images/17d71a75-f1d5-45a6-a3bf-d21ea10ac02f" alt="Garantia" class="fade-in">
 
         <img src="https://cdn.xquiz.co/images/ba8b3e2d-a7b4-4230-ab80-a5db4d759435" alt="Pagamento Seguro" class="fade-in">
 
+        <div class="highlight-text" style="background: linear-gradient(135deg, #ff6b35 0%, #ff4500 100%);">
+            📸 Veja as lancheiras incríveis que nossas mães estão fazendo!
+        </div>
+
         <div class="carousel">
-            <img src="https://cdn.xquiz.co/images/76bc98ee-ebdd-429e-8b35-33f3dac21861" alt="Galeria 1">
-            <img src="https://cdn.xquiz.co/images/9fa336fb-f010-41f5-b182-56b446c9a6fc" alt="Galeria 2">
-            <img src="https://cdn.xquiz.co/images/fbd6692c-8207-4126-9dd1-a6a42438bb0f" alt="Galeria 3">
-            <img src="https://cdn.xquiz.co/images/f8a38115-f97b-41c3-9ded-996c3dca4d94" alt="Galeria 4">
+            <img src="https://cdn.xquiz.co/images/76bc98ee-ebdd-429e-8b35-33f3dac21861" alt="Lancheira 1">
+            <img src="https://cdn.xquiz.co/images/9fa336fb-f010-41f5-b182-56b446c9a6fc" alt="Lancheira 2">
+            <img src="https://cdn.xquiz.co/images/fbd6692c-8207-4126-9dd1-a6a42438bb0f" alt="Lancheira 3">
+            <img src="https://cdn.xquiz.co/images/f8a38115-f97b-41c3-9ded-996c3dca4d94" alt="Lancheira 4">
+        </div>
+
+        <div class="section-highlight fade-in">
+            <h2 style="font-size: 24px; font-weight: 800; color: var(--dark-green); margin-bottom: 20px; text-align: center;">❓ Perguntas Frequentes</h2>
         </div>
 
         <img src="https://cdn.xquiz.co/images/725cc775-8442-41cf-93c5-a486732b4994" alt="FAQ" class="fade-in">
 
-        <img src="https://cdn.xquiz.co/images/4fa3d267-17cc-4847-b7c2-d0a7ed189a35" alt="Sobre" class="fade-in">
+        <img src="https://cdn.xquiz.co/images/4fa3d267-17cc-4847-b7c2-d0a7ed189a35" alt="Sobre o Método" class="fade-in">
 
         <img src="https://cdn.xquiz.co/images/1c5c8d86-2e91-4c00-97ae-ee473428bd6e" alt="Benefícios Finais" class="fade-in">
 
+        <div class="guarantee-badge fade-in" style="background: linear-gradient(135deg, #ff6b35 0%, #ff4500 100%); font-size: 20px;">
+            🔥 OFERTA POR TEMPO LIMITADO 🔥<br>
+            <span style="font-size: 15px;">Não perca essa oportunidade única!</span>
+        </div>
+
+        <button class="btn btn-primary" onclick="window.location.href='https://pay.lowify.com.br/checkout?product_id=VzwxEy'" style="font-size: 20px; padding: 22px 40px;">
+            <span class="btn-icon">💚</span> GARANTIR MINHA TRANSFORMAÇÃO AGORA!
+        </button>
+
         <div class="img-40">
-            <img src="https://cdn.xquiz.co/images/d0760a60-72e3-4a4e-b028-d523882f388d" alt="Logo" class="fade-in">
+            <img src="https://cdn.xquiz.co/images/d0760a60-72e3-4a4e-b028-d523882f388d" alt="Logo Congela & Pronto">
         </div>
 
         <img src="https://cdn.xquiz.co/images/b08be983-7437-4212-b4c3-cc13e7dd1940" alt="Footer" class="fade-in">
 
-        <button class="btn btn-primary" onclick="scrollToCheckout()">QUERO MEU FILHO SAUDÁVEL!</button>
+        <div style="text-align: center; padding: 30px 0; color: var(--text-light); font-size: 14px;">
+            <p style="margin-bottom: 10px;">🔒 Ambiente 100% seguro e criptografado</p>
+            <p style="margin-bottom: 10px;">✉️ Suporte: contato@congelapronto.com.br</p>
+            <p>© 2025 Congela & Pronto - Todos os direitos reservados</p>
+        </div>
     </div>
 
     <!-- UTMify Pixel -->
@@ -434,26 +798,30 @@
     <script src="https://cdn.jsdelivr.net/npm/js-sha256/src/sha256.min.js" async defer></script>
 
     <!-- UTMify UTMs Script -->
-    <script src="https://cdn.utmify.com.br/scripts/utms/latest.js" data-utmify-prevent-subids async defer></script>
+    <script src="https://cdn.utmify.com.br/scripts/utms/latest.js" data-utmify-prevent-xcod-sck data-utmify-prevent-subids async defer></script>
 
+    <!-- Scripts de Funcionalidade -->
     <script>
         function scrollToCheckout() {
-            document.getElementById('checkout').scrollIntoView({ behavior: 'smooth' });
+            document.getElementById('checkout').scrollIntoView({ behavior: 'smooth', block: 'center' });
         }
 
         function mostrarPopup(id, delay) {
             setTimeout(() => {
                 const popup = document.getElementById(id);
                 popup.style.display = 'block';
-                setTimeout(() => popup.style.display = 'none', 5000);
+                setTimeout(() => {
+                    popup.style.display = 'none';
+                }, 5000);
             }, delay);
         }
 
-        const t1 = 13000;
-        const t2 = t1 + 21000;
-        const t3 = t2 + 35000;
-        const t4 = t3 + 47000;
-        const t5 = t4 + 67000;
+        // Cronograma dos popups
+        const t1 = 8000;
+        const t2 = t1 + 18000;
+        const t3 = t2 + 25000;
+        const t4 = t3 + 32000;
+        const t5 = t4 + 40000;
 
         mostrarPopup('popup1', t1);
         mostrarPopup('popup2', t2);
@@ -461,6 +829,26 @@
         mostrarPopup('popup4', t4);
         mostrarPopup('popup5', t5);
 
+        // Botão flutuante aparece após 15% de scroll
+        document.addEventListener("scroll", function() {
+            const scrollTop = window.scrollY;
+            const docHeight = document.body.scrollHeight - window.innerHeight;
+            const scrollPercent = (scrollTop / docHeight) * 100;
+            
+            if(scrollPercent >= 15) {
+                const btn = document.getElementById("sticky-btn");
+                if(btn && btn.style.display !== "block") {
+                    btn.style.display = "block";
+                    btn.style.opacity = "0";
+                    btn.style.transition = "opacity 0.6s ease-in-out";
+                    setTimeout(() => {
+                        btn.style.opacity = "1";
+                    }, 100);
+                }
+            }
+        });
+
+        // Proteções de segurança
         document.addEventListener('contextmenu', e => e.preventDefault());
         document.addEventListener('copy', e => e.preventDefault());
         document.addEventListener('cut', e => e.preventDefault());
@@ -477,8 +865,25 @@
                 e.preventDefault();
             }
         });
+
+        // Lazy loading para imagens
+        document.addEventListener('DOMContentLoaded', function() {
+            const images = document.querySelectorAll('img');
+            const imageObserver = new IntersectionObserver((entries, observer) => {
+                entries.forEach(entry => {
+                    if (entry.isIntersecting) {
+                        const img = entry.target;
+                        img.classList.add('fade-in');
+                        observer.unobserve(img);
+                    }
+                });
+            });
+
+            images.forEach(img => imageObserver.observe(img));
+        });
     </script>
 
+    <!-- Script do Vídeo -->
     <script type="text/javascript">
         var s = document.createElement("script");
         s.src = "https://scripts.converteai.net/144fdef5-625a-41a3-ad1e-b6f3c57bbba2/players/68a3cbc272c5fa25b46ddf82/v4/player.js";
